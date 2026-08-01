@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en" id="htmlRoot">
 <head>
@@ -7,14 +8,15 @@
 <title>Wedding Invitation</title>
 <style>
   :root{
-    --gold:#c9a35c;
-    --dark:#2b2420;
-    --cream:#faf6ee;
+    --gold:#c40000;
+    --dark:#2b2b2b;
+    --cream:#ffffff;
+    --grey:#c4c4c4;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   body{
     font-family:'Georgia', 'Times New Roman', serif;
-    background:linear-gradient(135deg,#1c1a17,#3a3128);
+    background:linear-gradient(135deg,#242424,#3a2020);
     min-height:100vh;
     display:flex;
     align-items:center;
@@ -29,7 +31,7 @@
   /* ---------- Name Prompt ---------- */
   #nameScreen{
     position:fixed;inset:0;
-    background:#1c1a17;
+    background:#242424;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -55,7 +57,7 @@
     text-align:center;
     outline:none;
   }
-  #nameInput::placeholder{color:#cbb98f99;}
+  #nameInput::placeholder{color:#c4c4c499;}
 
   .lang-options{
     display:flex;
@@ -74,7 +76,7 @@
   }
   .lang-options button.active{
     background:var(--gold);
-    color:#1c1a17;
+    color:#ffffff;
   }
 
   #nameSubmit{
@@ -82,7 +84,7 @@
     border-radius:6px;
     border:1px solid var(--gold);
     background:var(--gold);
-    color:#1c1a17;
+    color:#ffffff;
     font-size:15px;
     letter-spacing:1px;
     cursor:pointer;
@@ -124,7 +126,7 @@
   #greeting{
     font-size:15px;
     letter-spacing:2px;
-    color:#cbb98f;
+    color:var(--grey);
     text-transform:uppercase;
     opacity:0;
     animation:fadeIn 1s ease forwards .3s;
@@ -139,14 +141,19 @@
   #couple{
     font-size:34px;
     margin:20px 0;
-    color:var(--gold);
+    color:#ffffff;
     font-family:'Brush Script MT', cursive;
     opacity:0;
-    animation:fadeIn 1.2s ease forwards 1.3s;
+    animation:fadeIn 1.2s ease forwards 1.3s, glowPulse 3s ease-in-out infinite 2.5s;
+    text-shadow:0 0 8px rgba(196,0,0,.65), 0 0 18px rgba(196,0,0,.4);
   }
   body[dir="rtl"] #couple{
     font-family:'Tajawal','Segoe UI',Tahoma,sans-serif;
     font-weight:700;
+  }
+  @keyframes glowPulse{
+    0%,100%{text-shadow:0 0 8px rgba(196,0,0,.65), 0 0 18px rgba(196,0,0,.4);}
+    50%{text-shadow:0 0 16px rgba(196,0,0,.95), 0 0 34px rgba(196,0,0,.6);}
   }
   .divider{
     width:60px;height:1px;
@@ -156,17 +163,17 @@
     animation:fadeIn 1s ease forwards 1.8s;
   }
   .detail{
-    margin:10px 0;
-    font-size:15px;
-    color:#e8ddc7;
+    margin:14px 0;
+    font-size:19px;
+    color:var(--grey);
     opacity:0;
     animation:fadeIn 1s ease forwards 2.1s;
   }
-  .detail span{display:block;color:var(--gold);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+  .detail span{display:block;color:var(--gold);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
   #thanks{
     margin-top:30px;
     font-style:italic;
-    color:#d8cba9;
+    color:var(--grey);
     opacity:0;
     animation:fadeIn 1.2s ease forwards 2.6s;
   }
@@ -207,7 +214,7 @@
   }
   .rsvp-options button.active{
     background:var(--gold);
-    color:#1c1a17;
+    color:#ffffff;
   }
   #plusOneWrap{
     display:none;
@@ -217,7 +224,7 @@
   #plusOneWrap label{
     display:block;
     font-size:13px;
-    color:#cbb98f;
+    color:var(--grey);
     margin-bottom:8px;
   }
   select, input[type=text]{
@@ -235,7 +242,7 @@
     border-radius:6px;
     border:1px solid var(--gold);
     background:var(--gold);
-    color:#1c1a17;
+    color:#ffffff;
     font-size:15px;
     letter-spacing:1px;
     cursor:pointer;
@@ -257,7 +264,7 @@
   #plusCountWrap label{
     display:block;
     font-size:13px;
-    color:#cbb98f;
+    color:var(--grey);
     margin-bottom:8px;
   }
   #plusCount{
@@ -367,9 +374,9 @@
      Provide both English (en) and Arabic (ar) versions.
      ========================================================= */
   const CONFIG = {
-    coupleA: { en: "Person A", ar: "أحمد جادو" },
-    coupleB: { en: "Person B", ar: "إسراء أحمد" },
-    date:    { en: "Saturday, 01 Jan 2027", ar: "الجمعة، ١ يناير ٢٠٢٧" },
+    coupleA: { en: "Ahmed Gado", ar: "أحمد جادو" },
+    coupleB: { en: "Israa Ahmed", ar: "إسراء أحمد" },
+    date:    { en: "Friday, 01 Jan 2027", ar: "الجمعة، ١ يناير ٢٠٢٧" },
     time:    { en: "4:00 PM", ar: "٤:٠٠ مساءً" },
     location:{ en: "The Garden Hall, Cairo", ar: "قاعة الحدائق، القاهرة" }
   };
@@ -407,27 +414,27 @@
     },
     ar: {
       dir: "rtl",
-      namePrompt: "من فضلك أدخل اسمك",
-      namePlaceholder: "اسمك بالكامل",
-      continueBtn: "متابعة",
-      dear: "عزيزي/عزيزتي",
-      inviteText: "أنتم مدعوون لحضور حفل زفاف:",
+      namePrompt: "اكتب اسمك من فضلك",
+      namePlaceholder: "اسمك كامل",
+      continueBtn: "يلا بينا",
+      dear: "يا",
+      inviteText: "نحب ندعوكم لفرحتنا",
       labelDate: "التاريخ",
-      labelTime: "الوقت",
+      labelTime: "الميعاد",
       labelLocation: "المكان",
-      thanks: "يشرفنا حقًا أن تشاركونا هذا اليوم الجميل. شكرًا لكونكم جزءًا من رحلتنا.",
-      rsvpTitle: "هل ستحضرون؟",
-      yesBtn: "نعم، سأكون هناك",
-      noBtn: "للأسف لن أتمكن من الحضور",
-      plusOneLabel: "هل ستحضر/ين برفقة أحد؟",
-      plusOneNo: "لا، سأحضر بمفردي",
-      plusOneYes: "نعم، سأحضر برفقة أحد",
-      plusCountLabel: "كم عدد الأشخاص الذين سترافقهم؟",
-      confirmBtn: "تأكيد الحضور",
-      pleaseRespond: "من فضلك أخبرنا إن كنت ستتمكن من الحضور.",
-      confirmYesGuests: (name, n) => `رائع يا ${name}! بانتظار الاحتفال معك ومع ${n} من ضيوفك.`,
-      confirmYesSolo: (name) => `رائع يا ${name}! بانتظار الاحتفال معك.`,
-      confirmNo: (name) => `شكرًا لإخبارنا يا ${name}، سنفتقدك!`
+      thanks: "يشرفنا وجودكم معانا في يوم فرحتنا. شكرًا إنكم جزء من حياتنا.",
+      rsvpTitle: "هتيجوا الفرح؟",
+      yesBtn: "أكيد هكون موجود",
+      noBtn: "للأسف مش هقدر أجي",
+      plusOneLabel: "هتيجي مع حد؟",
+      plusOneNo: "لأ، هيجي لوحدي",
+      plusOneYes: "أيوه، هجيب حد معايا",
+      plusCountLabel: "هتجيبوا كام معاكوا؟",
+      confirmBtn: "أكد الحضور",
+      pleaseRespond: "قولنا هتيجوا ولا لأ من فضلك.",
+      confirmYesGuests: (name, n) => `تمام يا ${name}! مستنينك إنت و ${n} من ضيوفك.`,
+      confirmYesSolo: (name) => `تمام يا ${name}! مستنينك تفرح معانا.`,
+      confirmNo: (name) => `شكرًا إنك قولتلنا يا ${name}، هتفتقدك!`
     }
   };
 
@@ -484,7 +491,14 @@
   const greeting = document.getElementById('greeting');
 
   function startInvite(){
-    const val = nameInput.value.trim() || "Guest";
+    const val = nameInput.value.trim();
+    if(!val){
+      nameInput.style.borderColor = '#ff5555';
+      nameInput.placeholder = currentLang === 'ar' ? 'من فضلك اكتب اسمك' : 'Please enter your name';
+      nameInput.focus();
+      return;
+    }
+    nameInput.style.borderColor = 'var(--gold)';
     guestName.textContent = val;
     greeting.childNodes[0].textContent = T[currentLang].dear + " ";
     applyLanguage(currentLang);
@@ -553,7 +567,7 @@
     } else {
       msg.textContent = t.confirmNo(name);
     }
-    msg.style.color = 'var(--gold)';
+    msg.style.color = '#ffffff';
     msg.style.display = 'block';
 
     sendRSVP({
